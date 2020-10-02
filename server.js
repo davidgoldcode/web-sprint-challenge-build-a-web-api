@@ -7,7 +7,7 @@ const server = express();
 server.use(express.json());
 
 server.get("/", (req, res) => {
-  res.status(200).json({ message: "hello" });
+  res.status(200).json({ message: "hello it's working if this is on heroku" });
 });
 
 server.use("/api/projects", projectRouter);

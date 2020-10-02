@@ -1,8 +1,6 @@
-const { json } = require("express");
 const express = require("express");
 const router = express.Router();
 const project = require("./data/helpers/projectModel.js");
-const actions = require("./data/helpers/actionModel");
 
 router.get("/", (req, res) => {
   project

@@ -2,6 +2,7 @@ const { json } = require("express");
 const express = require("express");
 const router = express.Router();
 const project = require("./data/helpers/projectModel.js");
+const actions = require("./data/helpers/actionModel");
 
 router.get("/", (req, res) => {
   project
@@ -66,6 +67,22 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-// test
+router.get("/projectActions", (req, res) => {
+  const { project_id } = req.body;
+  console.log(project_id);
+  if (!project_id) {
+    res.status(500).json({ message: "Must supply project ID" });
+  } else {
+    project
+      .getProjectActions(project_id)
+      .then((success) => {
+        res.status(200).json({ success });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(404).json({ message: "Error" });
+      });
+  }
+});
 
 module.exports = router;
